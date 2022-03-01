@@ -1,0 +1,49 @@
+<div style ='text-align:center'>
+    <h2>Search Results</h2>
+  </div>
+<div style="align-items: center;">
+   
+    <p-table #migTable [value]="data" 
+            dataKey="id"
+            selectionMode="single" 
+            responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>CLASX</th>
+                <th>DESCRIPTION</th>
+                <th>PRMSTE</th>
+                <th>MAPDSR</th>
+                <th>AUTDSR</th>
+                <th>PROPDSR</th>
+                <th>GLDSR</th>
+                <th>WCDSR</th>
+                <th>CAUTDSR</th>
+                <th>CUPDSR</th>
+                <th>CTRDSR</th>
+                <th style="width:4rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td>{{data.CLASX}}</td>
+                <td>{{data.DESC}}</td>
+                <td>{{data.PRMSTE}}</td>
+                <td>{{data.MAPDSR}}</td>
+                <td>{{data.AUTDSR}}</td>
+                <td>{{data.PROPDSR}}</td>
+                <td>{{data.GLDSR}}</td>
+                <td>{{data.WCDSR}}</td>
+                <td>{{data.CAUTDSR}}</td>
+                <td>{{data.CUPDSR}}</td>
+                <td>{{data.CTRDSR}}</td>
+                <td>
+                    <button type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <!-- <pre style='height: 100%; overflow-y: scroll;'>
+        {{data | json}}
+    </pre> -->
+    <p-toast key= 'key1' position="top-right"></p-toast>
+</div>
