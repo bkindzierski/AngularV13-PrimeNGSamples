@@ -18,12 +18,14 @@ import {AppComponent} from './app.component';
 import {SearchresultsComponent} from './search/searchresults.component';
 //services
 import {MessageService} from 'primeng/api';
-import {SearchserviceService} from './services/searchservice.service'
+import {SearchserviceService} from './services/searchservice.service';
+import { TestingComponent } from './components/testing/testing.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchresultsComponent
+    SearchresultsComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,

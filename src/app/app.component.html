@@ -65,15 +65,16 @@
       <p-calendar inputId="basic" [(ngModel)]="date1" appendTo={document.body} ></p-calendar>
     </div>
   </div>
-  <div style="width: 135%;margin-top: 25px;">
-    <p-panel  header="Show Output"> 
-      <p-button (onClick)='ShowSideBar($event)' label="Show Output" icon="pi pi-check" class="p-button-sm"></p-button>
-    </p-panel>
+  <!-- testing component--> 
+  <div class="p-fluid grid formgrid" style="margin-top: 15px">
+    <app-testing></app-testing>
   </div>
+  
+
  <div style="width:135%">
   <p-divider></p-divider>
 </div>
-  
+
   <!-- grid here -->
   <div class="p-fluid grid formgrid" style='margin-top: 25px; border-top: #888; border-style:solid; border-width: 1px; width: 135%;'>
     <div style="position: inherit; text-align: justify;">
@@ -102,10 +103,5 @@
   </svg> -->
  
 </div>
-<p-sidebar [(visible)]="display" 
-          position="right" 
-          [baseZIndex]="10000" 
-          styleClass="p-sidebar-md">
-          <h3>Right Sidebar</h3> 
-</p-sidebar>
+
 
