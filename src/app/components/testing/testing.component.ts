@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { IBusinessClassData } from 'src/app/model/IBusinessClass';
+import { SearchserviceService } from 'src/app/services/searchservice.service';
 
 @Component({
   selector: 'app-testing',
@@ -8,10 +10,16 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 export class TestingComponent implements OnInit {
 
   display;
-
-  constructor(public changeDetectionRef: ChangeDetectorRef) { }
+  data: IBusinessClassData[] =[];
+  
+  constructor(public changeDetectionRef: ChangeDetectorRef,
+    private searchService:SearchserviceService) { }
 
   ngOnInit(): void {
+    this.searchService.getSampleData().subscribe(res => {
+      this.data = res;
+      //console.log('data,' ,this.data);
+    });
   }
 
   ShowSideBar(event:any){

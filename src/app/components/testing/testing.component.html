@@ -1,12 +1,17 @@
 
-<p-panel  header="Show Output" > 
-    <p-button (onClick)='ShowSideBar($event)' label="Show Output" icon="pi pi-check" class="p-button-sm"></p-button>
+<p-panel header="Show Output" > 
+    <p-button (onClick)='ShowSideBar($event)' 
+    label="Show Output" 
+    icon="pi pi-check" 
+    class="p-button-sm"></p-button>
 </p-panel>
-
-
 <p-sidebar [(visible)]="display" 
         position="right" 
-        [baseZIndex]="10000" 
-        styleClass="p-sidebar-md">
-        <h3>Right Sidebar</h3> 
+        [baseZIndex]="0" 
+        styleClass="p-sidebar-sm"
+        showCloseIcon="false">
+        <h3>Business Class Data</h3>
+        <pre style='height: 100%;'>
+            {{data | json}}
+        </pre>
 </p-sidebar>

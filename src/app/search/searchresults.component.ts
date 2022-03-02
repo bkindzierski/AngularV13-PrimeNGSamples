@@ -27,8 +27,8 @@ export class SearchresultsComponent implements OnInit {
   }
 
   selectClass(data: IBusinessClassData) {
-    console.log ('class? ', data.CLASX + ' -- state: ', data.PRMSTE)
-    console.log ('data? ',data);
+    // console.log ('class? ', data.CLASX + ' -- state: ', data.PRMSTE)
+    // console.log ('data? ',data);
     this.toastKey = data.CLASX.toString() + data.PRMSTE;
     this.messageService.add({key: 'key1', severity:'info', summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
   }
