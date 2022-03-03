@@ -7,11 +7,10 @@
 </p-panel>
 <p-sidebar [(visible)]="display" 
         position="right" 
-        [baseZIndex]="0" 
+        [baseZIndex]="10000" 
         styleClass="p-sidebar-sm"
-        showCloseIcon="false">
+        [showCloseIcon]="false">
         <h3>Business Class Data</h3>
         <pre style='height: 100%;'>
-            {{data | json}}
-        </pre>
-</p-sidebar>
+            {{data | json}}        </pre>
+</p-sidebar> 
