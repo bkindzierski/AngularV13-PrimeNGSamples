@@ -5,8 +5,21 @@
    
     <p-table #migTable [value]="data" 
             dataKey="id"
+            rows="25"
+            [paginator]="true"           
             selectionMode="single" 
-            responsiveLayout="scroll">
+            responsiveLayout="scroll"
+            [globalFilterFields]="['CLASX','DESC','PRMSTE']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        (input)="migTable.filterGlobal($event.target.value, 'contains')" 
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th>CLASX</th>
