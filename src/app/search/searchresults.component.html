@@ -3,10 +3,13 @@
   </div>
 <div style="align-items: center;">
    
-    <p-table #migTable [value]="data" 
+    <p-table #dt1 [value]="data" 
             dataKey="id"
-            rows="25"
-            [paginator]="true"           
+            rows="50"
+            [paginator]="true"
+            [showCurrentPageReport]="true"
+            [loading]="loading"
+            styleClass="p-datatable-gridlines"           
             selectionMode="single" 
             responsiveLayout="scroll"
             [globalFilterFields]="['CLASX','DESC','PRMSTE']">
@@ -15,7 +18,8 @@
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" 
-                        (input)="migTable.filterGlobal($event.target.value, 'contains')" 
+                        style="width:25%"
+                        (input)="dt1.filterGlobal($event.target.value, 'contains')" 
                         placeholder="Search keyword" />
                 </span>
             </div>

@@ -9,10 +9,11 @@ import { SearchserviceService } from '../services/searchservice.service'
   styleUrls: ['./searchresults.component.css']
 })
 export class SearchresultsComponent implements OnInit {
-
-  data: IBusinessClassData[] =[];
-  toastKey:string;
+  
+  toastKey:string;  
+  loading: boolean = true;
   selectedClass: IBusinessClassData;
+  data: IBusinessClassData[] =[];
 
   constructor(private searchService: SearchserviceService,
               private messageService: MessageService) { }
@@ -20,10 +21,13 @@ export class SearchresultsComponent implements OnInit {
   ngOnInit(): void {
     
     //
-    this.searchService.getSampleData().subscribe(res => {
-      this.data = res;
-      //console.log('data,' ,this.data);
-    });
+    setTimeout(() =>{
+      this.searchService.getSampleData().subscribe(res => {
+        this.data = res;
+        this.loading = false;        
+        //console.log('data,' ,this.data);
+      });
+    },1000);    
   }
 
   selectClass(data: IBusinessClassData) {
