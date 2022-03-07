@@ -20,7 +20,7 @@ import {SearchresultsComponent} from './search/searchresults.component';
 //services
 import {MessageService} from 'primeng/api';
 import {SearchserviceService} from './services/searchservice.service';
-import {TestingComponent} from './components/testing/testing.component'
+import {TestingComponent} from './components/testing/testing.component';
 
 @NgModule({
   declarations: [
