@@ -5,7 +5,7 @@
    
     <p-table #dt1 [value]="data" 
             dataKey="id"
-            rows="50"
+            rows="35"
             [paginator]="true"
             [showCurrentPageReport]="true"
             [loading]="loading"
@@ -15,10 +15,17 @@
             [globalFilterFields]="['CLASX','DESC','PRMSTE']">
         <ng-template pTemplate="caption">
             <div class="flex">
-                <span class="p-input-icon-left ml-auto">
+                <button pButton label="Clear" 
+                        class="p-button-outlined" 
+                        icon="pi pi-filter-slash" 
+                        (click)="clear(dt1)"
+                        style="width:auto;">
+                </button>
+                <span class="p-input-icon-left ml-auto" 
+                      style="margin-left:73%; display:inline;">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" 
-                        style="width:25%"
+                        style="width:auto;"
                         (input)="dt1.filterGlobal($event.target.value, 'contains')" 
                         placeholder="Search keyword" />
                 </span>
@@ -37,7 +44,7 @@
                 <th>CAUTDSR</th>
                 <th>CUPDSR</th>
                 <th>CTRDSR</th>
-                <th style="width:4rem"></th>
+                <th style="width:4rem">SELECT</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>

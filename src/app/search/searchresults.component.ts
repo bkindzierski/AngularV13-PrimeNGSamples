@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
 
@@ -37,7 +38,8 @@ export class SearchresultsComponent implements OnInit {
     this.messageService.add({key: 'key1', severity:'info', summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
   }
 
-  clear() {
+  clear(table: Table) {
+    table.clear();
     this.messageService.clear();
   }
 
