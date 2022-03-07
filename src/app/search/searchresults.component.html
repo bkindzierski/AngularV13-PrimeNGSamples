@@ -3,10 +3,27 @@
   </div>
 <div style="align-items: center;">
    
-    <p-table #migTable [value]="data" 
+    <p-table #dt1 [value]="data" 
             dataKey="id"
+            rows="50"
+            [paginator]="true"
+            [showCurrentPageReport]="true"
+            [loading]="loading"
+            styleClass="p-datatable-gridlines"           
             selectionMode="single" 
-            responsiveLayout="scroll">
+            responsiveLayout="scroll"
+            [globalFilterFields]="['CLASX','DESC','PRMSTE']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        style="width:25%"
+                        (input)="dt1.filterGlobal($event.target.value, 'contains')" 
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th>CLASX</th>

@@ -18,13 +18,7 @@ export class AppComponent {
     
   }
   
-  ShowSideBar(event:any){
-
-    console.log('event: ', event);
-    this.display = !this.display;
-    this.changeDetectionRef.detectChanges();
-    // console.log('event: ', (event.target as HTMLInputElement).value);
-  }
+ 
 }
 
 
