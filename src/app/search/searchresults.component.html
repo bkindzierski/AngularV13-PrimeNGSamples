@@ -63,24 +63,125 @@
                 <td style="width:70px">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td> 
 
                 <td style="width:50px">
-                    <!-- <div *ngIf='data.MAPDSR == "G"'>
-                        <i class="pi-check-circle" style="font-size: 2rem"></i>
+                    <div *ngIf='data.MAPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
                     </div>
-                    <div *ngIf='data.MAPDSR == "R"'>                        
-                        <i class="pi-check-circle" style="font-size: 2rem"></i>
+                    <div *ngIf='data.MAPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
                     </div>
-                    <div *ngIf='data.MAPDSR == "Y"'>
-                        <i class="pi-check-circle" style="font-size: 2rem"></i>
-                    </div> -->
-                    {{data.MAPDSR}}
+                    <div *ngIf='data.MAPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.MAPDSR}} -->
                 </td>
-                <td style="width:50px">{{data.CTRDSR}}</td>
-                <td style="width:50px">{{data.AUTDSR}}</td>                
-                <td style="width:50px">{{data.PROPDSR}}</td>                
-                <td style="width:50px">{{data.GLDSR}}</td>
-                <td style="width:50px">{{data.WCDSR}}</td>
-                <td style="width:50px">{{data.CAUTDSR}}</td>
-                <td style="width:50px">{{data.CUPDSR}}</td>
+                <td style="width:50px">
+                    <div *ngIf='data.CTRDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CTRDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CTRDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CTRDSR}} -->
+                </td>
+                <td style="width:50px">
+                    <div *ngIf='data.AUTDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.AUTDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.AUTDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.AUTDSR}} -->
+                </td>                
+                <td style="width:50px">
+                    <div *ngIf='data.PROPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.PROPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.PROPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.PROPDSR}} -->
+                </td>                
+                <td style="width:50px">
+                    <div *ngIf='data.GLDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.GLDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.GLDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.GLDSR}} -->
+                </td>
+                <td style="width:50px">
+                    <div *ngIf='data.WCDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.WCDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.WCDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.WCDSR}} -->
+                </td>
+                <td style="width:50px">
+                    <div *ngIf='data.CAUTDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CAUTDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CAUTDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CAUTDSR}} -->
+                </td>
+                <td style="width:50px">
+                    <div *ngIf='data.CUPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CUPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CUPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CUPDSR}} -->
+                </td>
                 <td>
                     <button type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
                 </td>
