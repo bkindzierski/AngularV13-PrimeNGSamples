@@ -12,35 +12,50 @@
             styleClass="p-datatable-sm"           
             selectionMode="single" 
             responsiveLayout="scroll"
-            [globalFilterFields]="['CLASX','DESC','PRMSTE']">
+            [globalFilterFields]="['CLASX','DESC','PRMSTE','MAPMS']">
         <ng-template pTemplate="caption">
-            <div class="flex">
+            <div class="flex">                
+                <span class="p-input-icon-left ml-auto" 
+                      style="display:inline;">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" 
+                        style="width:55%;"
+                        (input)="dt1.filterGlobal($event.target.value, 'contains')" 
+                        placeholder="Search keyword" />
+                </span>
                 <button pButton label="Clear" 
                         class="p-button-outlined" 
                         icon="pi pi-filter-slash" 
                         (click)="clear(dt1)"
-                        style="width:auto;">
+                        style="width:auto;margin-left:35%">
                 </button>
-                <span class="p-input-icon-left ml-auto" 
-                      style="margin-left:73%; display:inline;">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" 
-                        style="width:auto;"
-                        (input)="dt1.filterGlobal($event.target.value, 'contains')" 
-                        placeholder="Search keyword" />
-                </span>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
+                 <!-- <p-panel header="Additional Search Criteria">   -->
+                <th>
+                                         
+                    <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>
+                    
+                </th>
+                <th  colspan="3">
+                    <p-columnFilter type="text" field="PRMSTE" placeholder="State"></p-columnFilter>
+                </th>
+                <th colspan="3">
+                    <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>
+                </th>
+                <th colspan="9"></th>
+                <!-- </p-panel> -->
+            </tr>
+            <tr>
                 <th>Business Class</th>
                 <th style="text-align: center;">State</th>
                 <th style="text-align: center;">SIC</th>
-                <th style="text-align: center;">ISO</th>
+                <th style="text-align: center;">ISO</th>                
                 <th style="text-align: center;">MKTSEG</th>
                 <th style="text-align: center;">EFFDTE</th>
                 <th style="text-align: center;">ENDDTE</th>
-
                 <th>BOP</th>
                 <th>CTR</th>
                 <th>GAR</th>
@@ -51,6 +66,7 @@
                 <th>CUP</th>
                 <th style="width:4rem">SELECT</th>
             </tr>
+            
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
@@ -60,8 +76,7 @@
                 <td style="width:70px; text-align: center;">{{data.CLASX}}</td> 
                 <td style="width:70px; text-align: center;">{{data.MAPMS}}</td> 
                 <td style="width:70px; text-align: center;">{{data.EFFDTE}}</td> 
-                <td style="width:70px; text-align: center;">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td> 
-
+                <td style="width:70px; text-align: center;">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td>
                 <td style="width:50px;text-align: center;">
                     <div *ngIf='data.MAPDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
