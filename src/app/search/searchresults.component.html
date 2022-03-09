@@ -34,12 +34,12 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Business Class</th>
-                <th>State</th>
-                <th>SIC</th>
-                <th>ISO</th>
-                <th>MKTSEG</th>
-                <th>EFFDTE</th>
-                <th>ENDDTE</th>
+                <th style="text-align: center;">State</th>
+                <th style="text-align: center;">SIC</th>
+                <th style="text-align: center;">ISO</th>
+                <th style="text-align: center;">MKTSEG</th>
+                <th style="text-align: center;">EFFDTE</th>
+                <th style="text-align: center;">ENDDTE</th>
 
                 <th>BOP</th>
                 <th>CTR</th>
@@ -55,14 +55,14 @@
         <ng-template pTemplate="body" let-data>
             <tr>
                 <td>{{data.DESC}}</td>
-                <td style="width:70px">{{data.PRMSTE}}</td>
-                <td style="width:70px">{{data.SICCDE}}</td>
-                <td style="width:70px">{{data.CLASX}}</td> 
-                <td style="width:70px">{{data.MAPMS}}</td> 
-                <td style="width:70px">{{data.EFFDTE}}</td> 
-                <td style="width:70px">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td> 
+                <td style="width:70px; text-align: center;">{{data.PRMSTE}}</td>
+                <td style="width:70px; text-align: center;">{{data.SICCDE}}</td>
+                <td style="width:70px; text-align: center;">{{data.CLASX}}</td> 
+                <td style="width:70px; text-align: center;">{{data.MAPMS}}</td> 
+                <td style="width:70px; text-align: center;">{{data.EFFDTE}}</td> 
+                <td style="width:70px; text-align: center;">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td> 
 
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.MAPDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -77,7 +77,7 @@
                     </div>
                     <!-- {{data.MAPDSR}} -->
                 </td>
-                <td style="width:50px">
+                <td style="width:50px; text-align: center;">
                     <div *ngIf='data.CTRDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -92,7 +92,7 @@
                     </div>
                     <!-- {{data.CTRDSR}} -->
                 </td>
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.AUTDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -107,7 +107,7 @@
                     </div>
                     <!-- {{data.AUTDSR}} -->
                 </td>                
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.PROPDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -122,7 +122,7 @@
                     </div>
                     <!-- {{data.PROPDSR}} -->
                 </td>                
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.GLDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -137,7 +137,7 @@
                     </div>
                     <!-- {{data.GLDSR}} -->
                 </td>
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.WCDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -152,7 +152,7 @@
                     </div>
                     <!-- {{data.WCDSR}} -->
                 </td>
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.CAUTDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -167,7 +167,7 @@
                     </div>
                     <!-- {{data.CAUTDSR}} -->
                 </td>
-                <td style="width:50px">
+                <td style="width:50px;text-align: center;">
                     <div *ngIf='data.CUPDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
                         <!-- <i class="pi-check-circle" ></i> -->
@@ -183,7 +183,7 @@
                     <!-- {{data.CUPDSR}} -->
                 </td>
                 <td>
-                    <button type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
+                    <button style="text-align: center;" type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -193,3 +193,10 @@
     </pre> -->
     <p-toast key= 'key1' position="top-right"></p-toast>
 </div>
+<p-sidebar [(visible)]="display" 
+        position="left" 
+        [baseZIndex]="10000" 
+        styleClass="p-sidebar-md"
+        [showCloseIcon]="false">
+        <h3>Table Class Data</h3>       
+</p-sidebar>
