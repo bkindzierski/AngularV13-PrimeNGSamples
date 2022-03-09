@@ -1,0 +1,12 @@
+.pi{
+    font-size: 1.4em;
+}
+.pi-check-circle{
+    color:green;
+}
+.pi-times-circle{
+    color:red;
+}
+.pi-exclamation-circle{
+    color:gold;
+}

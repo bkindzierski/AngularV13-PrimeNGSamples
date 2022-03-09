@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
 
@@ -14,7 +15,7 @@ export class SearchresultsComponent implements OnInit {
   loading: boolean = true;
   selectedClass: IBusinessClassData;
   data: IBusinessClassData[] =[];
-
+  display;
   constructor(private searchService: SearchserviceService,
               private messageService: MessageService) { }
 
@@ -33,11 +34,13 @@ export class SearchresultsComponent implements OnInit {
   selectClass(data: IBusinessClassData) {
     // console.log ('class? ', data.CLASX + ' -- state: ', data.PRMSTE)
     // console.log ('data? ',data);
-    this.toastKey = data.CLASX.toString() + data.PRMSTE;
-    this.messageService.add({key: 'key1', severity:'info', summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
+    //this.toastKey = data.CLASX.toString() + data.PRMSTE;
+    //this.messageService.add({key: 'key1', severity:'info', summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
+    this.display = !this.display;
   }
 
-  clear() {
+  clear(table: Table) {
+    table.clear();
     this.messageService.clear();
   }
 

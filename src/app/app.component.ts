@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-
+// import {PrimeIcons} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,10 @@ export class AppComponent {
   display;
 
   constructor(public changeDetectionRef: ChangeDetectorRef)  { }
+
   ngOninit() {
 
-    throw new Error('Function not implemented.');
+    //throw new Error('Function not implemented.');
     
   }
   

@@ -5,20 +5,27 @@
    
     <p-table #dt1 [value]="data" 
             dataKey="id"
-            rows="50"
+            rows="35"
             [paginator]="true"
             [showCurrentPageReport]="true"
             [loading]="loading"
-            styleClass="p-datatable-gridlines"           
+            styleClass="p-datatable-sm"           
             selectionMode="single" 
             responsiveLayout="scroll"
             [globalFilterFields]="['CLASX','DESC','PRMSTE']">
         <ng-template pTemplate="caption">
             <div class="flex">
-                <span class="p-input-icon-left ml-auto">
+                <button pButton label="Clear" 
+                        class="p-button-outlined" 
+                        icon="pi pi-filter-slash" 
+                        (click)="clear(dt1)"
+                        style="width:auto;">
+                </button>
+                <span class="p-input-icon-left ml-auto" 
+                      style="margin-left:73%; display:inline;">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" 
-                        style="width:25%"
+                        style="width:auto;"
                         (input)="dt1.filterGlobal($event.target.value, 'contains')" 
                         placeholder="Search keyword" />
                 </span>
@@ -26,35 +33,157 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>CLASX</th>
-                <th>DESCRIPTION</th>
-                <th>PRMSTE</th>
-                <th>MAPDSR</th>
-                <th>AUTDSR</th>
-                <th>PROPDSR</th>
-                <th>GLDSR</th>
-                <th>WCDSR</th>
-                <th>CAUTDSR</th>
-                <th>CUPDSR</th>
-                <th>CTRDSR</th>
-                <th style="width:4rem"></th>
+                <th>Business Class</th>
+                <th style="text-align: center;">State</th>
+                <th style="text-align: center;">SIC</th>
+                <th style="text-align: center;">ISO</th>
+                <th style="text-align: center;">MKTSEG</th>
+                <th style="text-align: center;">EFFDTE</th>
+                <th style="text-align: center;">ENDDTE</th>
+
+                <th>BOP</th>
+                <th>CTR</th>
+                <th>GAR</th>
+                <th>PROP</th>
+                <th>GL</th>
+                <th>WC</th>
+                <th>AUTO</th>
+                <th>CUP</th>
+                <th style="width:4rem">SELECT</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.CLASX}}</td>
                 <td>{{data.DESC}}</td>
-                <td>{{data.PRMSTE}}</td>
-                <td>{{data.MAPDSR}}</td>
-                <td>{{data.AUTDSR}}</td>
-                <td>{{data.PROPDSR}}</td>
-                <td>{{data.GLDSR}}</td>
-                <td>{{data.WCDSR}}</td>
-                <td>{{data.CAUTDSR}}</td>
-                <td>{{data.CUPDSR}}</td>
-                <td>{{data.CTRDSR}}</td>
+                <td style="width:70px; text-align: center;">{{data.PRMSTE}}</td>
+                <td style="width:70px; text-align: center;">{{data.SICCDE}}</td>
+                <td style="width:70px; text-align: center;">{{data.CLASX}}</td> 
+                <td style="width:70px; text-align: center;">{{data.MAPMS}}</td> 
+                <td style="width:70px; text-align: center;">{{data.EFFDTE}}</td> 
+                <td style="width:70px; text-align: center;">{{data.ENDDTE == 0? 'n.a.' : data.ENDDTE}}</td> 
+
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.MAPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.MAPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.MAPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.MAPDSR}} -->
+                </td>
+                <td style="width:50px; text-align: center;">
+                    <div *ngIf='data.CTRDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CTRDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CTRDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CTRDSR}} -->
+                </td>
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.AUTDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.AUTDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.AUTDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.AUTDSR}} -->
+                </td>                
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.PROPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.PROPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.PROPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.PROPDSR}} -->
+                </td>                
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.GLDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.GLDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.GLDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.GLDSR}} -->
+                </td>
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.WCDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.WCDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.WCDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.WCDSR}} -->
+                </td>
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.CAUTDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CAUTDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CAUTDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CAUTDSR}} -->
+                </td>
+                <td style="width:50px;text-align: center;">
+                    <div *ngIf='data.CUPDSR == "G"'>
+                        <span class="pi pi-check-circle"></span>
+                        <!-- <i class="pi-check-circle" ></i> -->
+                    </div>
+                    <div *ngIf='data.CUPDSR == "R"'>
+                        <span class="pi pi-times-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <div *ngIf='data.CUPDSR == "Y"'>                        
+                        <span class="pi pi-exclamation-circle"></span>
+                        <!-- <i class="pi-check-circle"></i> -->
+                    </div>
+                    <!-- {{data.CUPDSR}} -->
+                </td>
                 <td>
-                    <button type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
+                    <button style="text-align: center;" type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -64,3 +193,10 @@
     </pre> -->
     <p-toast key= 'key1' position="top-right"></p-toast>
 </div>
+<p-sidebar [(visible)]="display" 
+        position="left" 
+        [baseZIndex]="10000" 
+        styleClass="p-sidebar-md"
+        [showCloseIcon]="false">
+        <h3>Table Class Data</h3>       
+</p-sidebar>

@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 //primeng test new branch
+import {PrimeIcons} from 'primeng/api';
 import {ButtonModule} from 'primeng/button';
 import {PanelModule} from 'primeng/panel';
 import {ToastModule} from 'primeng/toast';
@@ -20,7 +21,7 @@ import {SearchresultsComponent} from './search/searchresults.component';
 //services
 import {MessageService} from 'primeng/api';
 import {SearchserviceService} from './services/searchservice.service';
-import {TestingComponent} from './components/testing/testing.component'
+import {TestingComponent} from './components/testing/testing.component';
 
 @NgModule({
   declarations: [
