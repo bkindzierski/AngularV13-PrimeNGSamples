@@ -5,14 +5,17 @@
    
     <p-table #dt1 [value]="data" 
             dataKey="id"
-            rows="35"
+            [rows]="25"
             [paginator]="true"
-            [showCurrentPageReport]="true"
+            [showCurrentPageReport]="true"            
             [loadingIcon]="loading"
+            [loading]="loading"
+            [showLoader] ="false"
             styleClass="p-datatable-sm"                   
             selectionMode="single" 
             responsiveLayout="scroll"
-            [globalFilterFields]="['CLASX','DESC','PRMSTE','MAPMS']">
+            [globalFilterFields]="['CLASX','DESC','PRMSTEDESC','MAPMS']"
+            [(first)]="first">
         <ng-template pTemplate="caption">
             <div class="flex">                
                 <span class="p-input-icon-left ml-auto"  style="display:inline;">
@@ -61,9 +64,19 @@
                         <div class="flex">                
                             <span style="display:inline-flex; align-items: center; width: 68%;">
                                 <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>
-                                <p-columnFilter type="text" field="PRMSTE" placeholder="State"></p-columnFilter>
-                                <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter> 
+                                <p-columnFilter type="text" field="PRMSTEDESC" placeholder="State"></p-columnFilter>
+                                <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>                                
                             </span>
+                            <div class="mb-3" style="float:right;">
+                                <!-- -->
+                                <p-button *ngIf="isFirstPage()" type="button" icon="pi pi-chevron-left"  [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+                                <p-button *ngIf="!isFirstPage()" type="button" icon="pi pi-chevron-left" (click)="prev()"  styleClass="p-button-text"></p-button>
+                                <!-- -->
+                                <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+                                <!-- -->
+                                <p-button *ngIf="isLastPage()" type="button" icon="pi pi-chevron-right" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+                                <p-button *ngIf="!isLastPage()" type="button" icon="pi pi-chevron-right" (click)="next()" styleClass="p-button-text"></p-button>
+                            </div>
                         </div>
                                                
                     </p-fieldset>
@@ -91,8 +104,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-data>
             <tr>
-                <td>{{data.DESC}}</td>
-                <td style="width:70px; text-align: center;">{{data.PRMSTE}}</td>
+                <td>{{data.DESC}}</td> 
+                <!-- <td style="width:70px; text-align: center;">{{data.PRMSTE}}</td> -->
+                <td style="width:70px; text-align: center;">{{data.PRMSTEDESC}}</td>
                 <td style="width:70px; text-align: center;">{{data.SICCDE}}</td>
                 <td style="width:70px; text-align: center;">{{data.CLASX}}</td> 
                 <td style="width:70px; text-align: center;">{{data.MAPMS}}</td> 
@@ -101,7 +115,7 @@
                 <td style="width:50px;text-align: center;">
                     <div *ngIf='data.MAPDSR == "G"'>
                         <span class="pi pi-check-circle"></span>
-                        <!-- <i class="pi-check-circle" ></i> -->
+                        <!-- <i class="pi-check-circle" ></i> --> 
                     </div>
                     <div *ngIf='data.MAPDSR == "R"'>
                         <span class="pi pi-times-circle"></span>

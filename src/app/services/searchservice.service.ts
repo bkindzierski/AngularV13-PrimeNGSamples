@@ -13,8 +13,9 @@ import { IBusinessClassData } from '../model/IBusinessClass';
 
 export class SearchserviceService {
 
-  //sample data
-  private _url = "./assets/SampleFileLoad.json";
+  //sample data -http://dev-net-brn.mig.local:8001/api/
+  //private _url = "./assets/SampleFileLoad.json";
+  private _url = 'http://dev-net-brn.MIG.local/RagApiDevDebug/api/BusinessClass';
   
   constructor(private _http: HttpClient) { }
 

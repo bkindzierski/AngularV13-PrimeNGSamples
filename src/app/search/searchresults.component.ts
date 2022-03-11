@@ -12,6 +12,8 @@ import { DOCUMENT } from "@angular/common";
 })
 export class SearchresultsComponent implements OnInit {
   
+  first = 0;
+  rows = 25;
   toastKey:string;  
   loading: boolean = true;
   selectedClass: IBusinessClassData;
@@ -51,13 +53,25 @@ export class SearchresultsComponent implements OnInit {
     //this.tbsearch.nativeElement.value = '';
     this.tb1Value = '';
   }
+  next() {
+    this.first = this.first + this.rows;
+}
 
-  // loadSample1() {
-	// 	this.sampleService.getSample(this.sample1).subscribe(data => {
-	// 		this.ctrQuote = data;
-	// 		this.doneLoadData.emit(data);
-	// 		//console.log(data);
-	// 	});
-	// }
+  prev() {
+      this.first = this.first - this.rows;
+  }
+
+  reset() {
+      this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    console.log('data length? ', this.data.length);
+      return this.data ? this.first === (this.data.length - this.rows): true;
+  }
+
+  isFirstPage(): boolean {
+    return this.data ? this.first === 0 : true;
+  }
 
 }
