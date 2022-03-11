@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-searchresults',
@@ -11,12 +12,18 @@ import { SearchserviceService } from '../services/searchservice.service'
 })
 export class SearchresultsComponent implements OnInit {
   
+  first = 0;
+  rows = 25;
   toastKey:string;  
   loading: boolean = true;
   selectedClass: IBusinessClassData;
   data: IBusinessClassData[] =[];
-  display;
-  constructor(private searchService: SearchserviceService,
+  display;  
+  tb1Value:string;
+  @ViewChild('tbsearch') tbsearch: ElementRef;
+  
+  constructor(@Inject(DOCUMENT) public document: Document,
+              private searchService: SearchserviceService,
               private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -42,14 +49,29 @@ export class SearchresultsComponent implements OnInit {
   clear(table: Table) {
     table.clear();
     this.messageService.clear();
+    //var tb = this.document.getElementById('tbsearch');   
+    //this.tbsearch.nativeElement.value = '';
+    this.tb1Value = '';
+  }
+  next() {
+    this.first = this.first + this.rows;
+}
+
+  prev() {
+      this.first = this.first - this.rows;
   }
 
-  // loadSample1() {
-	// 	this.sampleService.getSample(this.sample1).subscribe(data => {
-	// 		this.ctrQuote = data;
-	// 		this.doneLoadData.emit(data);
-	// 		//console.log(data);
-	// 	});
-	// }
+  reset() {
+      this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    console.log('data length? ', this.data.length);
+      return this.data ? this.first === (this.data.length - this.rows): true;
+  }
+
+  isFirstPage(): boolean {
+    return this.data ? this.first === 0 : true;
+  }
 
 }
