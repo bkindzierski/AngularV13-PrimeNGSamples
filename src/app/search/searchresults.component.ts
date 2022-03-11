@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-searchresults',
@@ -15,8 +16,12 @@ export class SearchresultsComponent implements OnInit {
   loading: boolean = true;
   selectedClass: IBusinessClassData;
   data: IBusinessClassData[] =[];
-  display;
-  constructor(private searchService: SearchserviceService,
+  display;  
+  tb1Value:string;
+  @ViewChild('tbsearch') tbsearch: ElementRef;
+  
+  constructor(@Inject(DOCUMENT) public document: Document,
+              private searchService: SearchserviceService,
               private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -42,6 +47,9 @@ export class SearchresultsComponent implements OnInit {
   clear(table: Table) {
     table.clear();
     this.messageService.clear();
+    //var tb = this.document.getElementById('tbsearch');   
+    //this.tbsearch.nativeElement.value = '';
+    this.tb1Value = '';
   }
 
   // loadSample1() {

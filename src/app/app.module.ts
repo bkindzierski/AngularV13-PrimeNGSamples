@@ -14,6 +14,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {SidebarModule} from 'primeng/sidebar';
 import {InputTextModule} from 'primeng/inputtext';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {FieldsetModule} from 'primeng/fieldset';
 
 //components
 import {AppComponent} from './app.component';
@@ -36,10 +37,11 @@ import {TestingComponent} from './components/testing/testing.component';
     HttpClientModule,
     TableModule,
     ToastModule,
-    PanelModule,
+    PanelModule,    
     ButtonModule,
     DividerModule,
     SidebarModule,
+    FieldsetModule,
     InputTextModule,
     OverlayPanelModule,
     BrowserAnimationsModule

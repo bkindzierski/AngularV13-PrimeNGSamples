@@ -1,6 +1,6 @@
 <div style ='text-align:center'>
     <h2>Search Results</h2>
-  </div>
+</div> 
 <div style="align-items: center;">
    
     <p-table #dt1 [value]="data" 
@@ -8,18 +8,19 @@
             rows="35"
             [paginator]="true"
             [showCurrentPageReport]="true"
-            [loading]="loading"
-            styleClass="p-datatable-sm"           
+            [loadingIcon]="loading"
+            styleClass="p-datatable-sm"                   
             selectionMode="single" 
             responsiveLayout="scroll"
             [globalFilterFields]="['CLASX','DESC','PRMSTE','MAPMS']">
         <ng-template pTemplate="caption">
             <div class="flex">                
-                <span class="p-input-icon-left ml-auto" 
-                      style="display:inline;">
+                <span class="p-input-icon-left ml-auto"  style="display:inline;">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" 
-                        style="width:55%;"
+                        id ='tbsearch'
+                        [(ngModel)]="tb1Value"
+                        style="width:60%;"
                         (input)="dt1.filterGlobal($event.target.value, 'contains')" 
                         placeholder="Search keyword" />
                 </span>
@@ -27,17 +28,22 @@
                         class="p-button-outlined" 
                         icon="pi pi-filter-slash" 
                         (click)="clear(dt1)"
-                        style="width:auto;margin-left:35%">
+                        style="width:auto;margin-left:31%">
                 </button>
             </div>
         </ng-template>
+            
         <ng-template pTemplate="header">
-            <tr>
-                 <!-- <p-panel header="Additional Search Criteria">   -->
-                <th>
-                                         
-                    <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>
-                    
+            <!-- <tr>
+                <th colspan="16"> 
+                    <span class="pi pi-search" style="margin-left: 7px"></span>&nbsp;   
+                    Additional Search Criteria
+                </th>
+            </tr> -->
+
+            <!-- <tr>
+                <th>                                                            
+                    <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>                    
                 </th>
                 <th  colspan="3">
                     <p-columnFilter type="text" field="PRMSTE" placeholder="State"></p-columnFilter>
@@ -46,25 +52,40 @@
                     <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>
                 </th>
                 <th colspan="9"></th>
-                <!-- </p-panel> -->
-            </tr>
+            </tr> -->
+
             <tr>
-                <th>Business Class</th>
-                <th style="text-align: center;">State</th>
-                <th style="text-align: center;">SIC</th>
-                <th style="text-align: center;">ISO</th>                
-                <th style="text-align: center;">MKTSEG</th>
-                <th style="text-align: center;">EFFDTE</th>
-                <th style="text-align: center;">ENDDTE</th>
-                <th>BOP</th>
-                <th>CTR</th>
-                <th>GAR</th>
-                <th>PROP</th>
-                <th>GL</th>
-                <th>WC</th>
-                <th>AUTO</th>
-                <th>CUP</th>
-                <th style="width:4rem">SELECT</th>
+                <th colspan="16">
+                    <p-fieldset legend="Additional Search Criteria" [toggleable]="false">
+                        
+                        <div class="flex">                
+                            <span style="display:inline-flex; align-items: center; width: 68%;">
+                                <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>
+                                <p-columnFilter type="text" field="PRMSTE" placeholder="State"></p-columnFilter>
+                                <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter> 
+                            </span>
+                        </div>
+                                               
+                    </p-fieldset>
+                </th>
+            </tr> 
+            <tr>
+                <th style="color:#8C2633">Business Class</th>
+                <th style="text-align: center;color:#8C2633">State</th>
+                <th style="text-align: center;color:#8C2633">SIC</th>
+                <th style="text-align: center;color:#8C2633">ISO</th>                
+                <th style="text-align: center;color:#8C2633">MKTSEG</th>
+                <th style="text-align: center;color:#8C2633">EFFDTE</th>
+                <th style="text-align: center;color:#8C2633">ENDDTE</th>
+                <th style="text-align: center;color:#8C2633">BOP</th>
+                <th style="text-align: center;color:#8C2633">CTR</th>
+                <th style="text-align: center;color:#8C2633">GAR</th>
+                <th style="text-align: center;color:#8C2633">PROP</th>
+                <th style="text-align: center;color:#8C2633">GL</th>
+                <th style="text-align: center;color:#8C2633">WC</th>
+                <th style="text-align: center;color:#8C2633">AUTO</th>
+                <th style="text-align: center;color:#8C2633">CUP</th>
+                <th style="width:4rem;color:#8C2633">SELECT</th>
             </tr>
             
         </ng-template>
@@ -198,7 +219,9 @@
                     <!-- {{data.CUPDSR}} -->
                 </td>
                 <td>
-                    <button style="text-align: center;" type="button" pButton pRipple icon="pi pi-align-justify" (click)="selectClass(data)"></button>
+                    <!-- <button style="text-align: center;" type="button" pButton pRipple icon="pi pi-eye" (click)="selectClass(data)"></button> -->
+                    <!-- <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined" (click)="selectClass(data)"></button> -->
+                    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text" style='color: #8C2633;' (click)="selectClass(data)"></button>
                 </td>
             </tr>
         </ng-template>
