@@ -66,8 +66,7 @@ export class SearchresultsComponent implements OnInit {
   }
 
   isLastPage(): boolean {
-    console.log('data length? ', this.data.length);
-      return this.data ? this.first === (this.data.length - this.rows): true;
+    return this.data ? this.first === (this.data.length - this.rows): true;
   }
 
   isFirstPage(): boolean {
