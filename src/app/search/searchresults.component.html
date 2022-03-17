@@ -7,10 +7,10 @@
             dataKey="id"
             [rows]="rows"
             [paginator]="true"
-            [showCurrentPageReport]="true"            
-            [loadingIcon]="loading"
+            [paginatorPosition]="pagingPosition"
+            [showCurrentPageReport]="true"
             [loading]="loading"
-            [showLoader] ="false"
+            [showLoader] ="true"
             styleClass="p-datatable-sm"                   
             selectionMode="single" 
             responsiveLayout="scroll"
@@ -25,9 +25,9 @@
                         [(ngModel)]="tb1Value"
                         style="width:60%;"
                         (input)="dt1.filterGlobal($event.target.value, 'contains')" 
-                        placeholder="Search keyword" />
+                        placeholder="Business Description / Class Code" />
                 </span>
-                <button pButton label="Clear" 
+                <button pButton label="Reset" 
                         class="p-button-outlined" 
                         icon="pi pi-filter-slash" 
                         (click)="clear(dt1)"
@@ -78,10 +78,27 @@
                                 <p-button *ngIf="!isLastPage()" type="button" icon="pi pi-chevron-right" (click)="next()" styleClass="p-button-text"></p-button>
                             </div>
                         </div>
-                                               
+                        <p style="margin-bottom:0em;">Search by Letter:</p>
+                        <div class="AZbtn" style="display:inline-flex;width:50em;margin-left: -1em;text-align: left">                           
+                           
+                            <button *ngFor="let item of createAZlinks()" (click)="AZclicked(item)" pButton type="button" class="p-button-link">{{ item }}</button>
+                        </div> 
+                        <!-- <div class="card">
+                            <div class="flex flex-column md:flex-row card-container indigo-container">
+                                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-indigo-500 font-bold text-white border-round m-2">1</div>
+                                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-indigo-500 font-bold text-white border-round m-2">2</div>
+                                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-indigo-500 font-bold text-white border-round m-2">3</div>
+                            </div>
+                        </div>                                           -->
                     </p-fieldset>
+                    
                 </th>
-            </tr> 
+            </tr>
+            <tr>
+                <th colspan="16">
+                       
+                </th>
+            </tr>
             <tr>
                 <th style="color:#8C2633">Business Class</th>
                 <th style="text-align: center;color:#8C2633">State</th>
@@ -248,7 +265,286 @@
 <p-sidebar [(visible)]="display" 
         position="left" 
         [baseZIndex]="10000" 
-        styleClass="p-sidebar-md"
-        [showCloseIcon]="false">
-        <h3>Table Class Data</h3>       
+        styleClass="p-sidebar-lg"
+        [showCloseIcon]="true">
+        <h4 class="modal-title">
+            <b> Business Class Details</b>
+        </h4>
+        <div class="p-fluid grid">
+            <div class="field col-12 md:col-4">
+                <span class="p-float-label" style="margin-top: 3em;">
+                    <input type="text" [readonly]='!adminUser' [disabled]="true" id="businessClass" pInputText [(ngModel)]="description"> 
+                    <label for="businessClass">Business Class</label>
+                </span>
+            </div>
+            <div style="display:inline-flex;">
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em;">                    
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="state" pInputText [(ngModel)]="state"> 
+                        <label for="state">State</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em; padding-left: 1em;">
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="effdte" pInputText [(ngModel)]="effdte"> 
+                        <label for="effdte" style="padding-left: 1em;">Effective Date</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em; padding-left: 1em;">
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="mktsgt" pInputText [(ngModel)]="mktsgt"> 
+                        <label for="mktsgt" style="padding-left: 1em;">Market Segment</label>
+                    </span>
+                </div>
+
+            </div>
+
+            <div style="display:inline-flex;">
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em;">                    
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="state" pInputText [(ngModel)]="classCode"> 
+                        <label for="classCode">ISO GL Code</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em; padding-left: 1em;">
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="effdte" pInputText [(ngModel)]="sicCode"> 
+                        <label for="sicCode" style="padding-left: 1em;">SIC Code</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em; padding-left: 1em;">
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="mktsgt" pInputText [(ngModel)]="bopcls"> 
+                        <label for="bopcls" style="padding-left: 1em;">BOPCLS</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 3em; padding-left: 1em;">
+                        <input type="text" [readonly]='!adminUser' [disabled]="true" id="mktsgt" pInputText [(ngModel)]="garcls"> 
+                        <label for="garcls" style="padding-left: 1em;">GARCLS</label>
+                    </span>
+                </div>
+            </div>
+
+            <p-fieldset legend="MAP Businessowners" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="MAPColorValue" 
+                                     id="MAPColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="MAPColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="MapClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="MAPClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="MAPClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+           
+            <p-fieldset legend="Contractors" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="CTRColor" 
+                                     id="CTRColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="CTRColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="CTRClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="CTRClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="CTRClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="MAP Auto Repair" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="MAPAutoRepairColor" 
+                                     id="MAPAutoRepairColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="MAPAutoRepairColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="MAPAutoRepairClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="MAPAutoRepairClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="MAPAutoRepairClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="Workers' Compensation" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="WorkersCompColor" 
+                                     id="WorkersCompColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="WorkersCompColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="WorkersCompClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="WorkersCompClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="WorkersCompClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="Property" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="PropertyColor" 
+                                     id="PropertyColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="PropertyColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="PropertyClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="PropertyClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="PropertyClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="Liability" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="LiabilityColor" 
+                                     id="LiabilityColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="LiabilityColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="LiabilityClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="LiabilityClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="LiabilityClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="Commercial Auto" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="AutoColor" 
+                                     id="AutoColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="AutoColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="AutoClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="AutoClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="AutoClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+
+            <p-fieldset legend="Commericial Umbrella" [toggleable]="true" [style]="{'margin-top':'1em'}" [collapsed]="true">                        
+                <div class="field col-12 md:col-4" style="width:10em;">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <p-dropdown  [readonly]='!adminUser' 
+                                     [disabled]="true" 
+                                     [options]="desirabilityOptions" 
+                                     [(ngModel)]="UmbrellaColor" 
+                                     id="UmbrellaColor" 
+                                     optionLabel="name" 
+                                     optionValue="value"></p-dropdown>
+                        <label for="UmbrellaColor">Desirability</label>                       
+                    </span>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label" style="margin-top: 1em;">                        
+                        <textarea [(ngModel)]="UmbrellaClassGuidelines" 
+                                    [rows]="5" [cols]="30" 
+                                    pInputTextarea autoResize="autoResize" 
+                                    id="UmbrellaClassGuidelines"  
+                                    maxlength="1200"
+                                    [readonly]='!adminUser' 
+                                    [disabled]="true"></textarea>
+                        <label for="UmbrellaClassGuidelines">Guidelines</label>                        
+                    </span>
+                </div>    
+            </p-fieldset>
+        </div> 
 </p-sidebar>
