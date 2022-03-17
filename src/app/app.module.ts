@@ -15,6 +15,8 @@ import {SidebarModule} from 'primeng/sidebar';
 import {InputTextModule} from 'primeng/inputtext';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {FieldsetModule} from 'primeng/fieldset';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 //components
 import {AppComponent} from './app.component';
@@ -44,7 +46,9 @@ import {TestingComponent} from './components/testing/testing.component';
     FieldsetModule,
     InputTextModule,
     OverlayPanelModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DropdownModule,
+    InputTextareaModule
   ],
   providers: [SearchserviceService,MessageService],
   bootstrap: [AppComponent]

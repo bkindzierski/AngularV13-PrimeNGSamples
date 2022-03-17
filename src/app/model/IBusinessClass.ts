@@ -1,5 +1,6 @@
 
 export interface IBusinessClassData {
+    AUTCLS: string;
     DESC: string;
     CLASX: number;
     SICCDE: number;
@@ -19,8 +20,11 @@ export interface IBusinessClassData {
     COVDSR: string;
     COVCMT: string;
     CUPDSR: string;
-    CUPCMT: string;       
+    CUPCMT: string;
+    CTRDSR:string;
+    CTRCMT:string;   
     EFFDTE: number;
+    ENDDTE: number;
     PRMSTE: number;
     MAPMS: string;
     RCDID: number;   

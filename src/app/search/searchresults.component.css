@@ -19,3 +19,16 @@
 .pagingArrow{
     color: #8C2633;
 }
+.AZbtn{
+    text-align: center;
+}
+
+.AZbtn button{
+  color: #86595f;
+  text-decoration: underline;
+}
+
+.AZbtn button:hover{
+  color: #8C2633;
+  text-decoration: underline;
+}

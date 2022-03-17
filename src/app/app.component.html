@@ -31,10 +31,13 @@
 
    <!-- <div class="p-fluid grid formgrid">   -->
     <div class="field col-4 md:col-4" style="margin-top: 15px; display:grid;width:210px">
+      <span class="p-float-label" >
+       
+        <p-calendar inputId="basic" 
+                    [(ngModel)]="date1">
+      </p-calendar>
       <label for="basic">Basic Calendar</label>
-      <p-calendar inputId="basic" 
-                  [(ngModel)]="date1">
-     </p-calendar>
+    </span>
     </div>
   <!-- </div> -->
 
