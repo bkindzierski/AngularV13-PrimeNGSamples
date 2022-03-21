@@ -4,7 +4,7 @@ import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
 import { DOCUMENT } from "@angular/common";
-
+import { AppComponent } from 'src/app/app.component'
 
 @Component({
   selector: 'app-searchresults',
@@ -56,7 +56,8 @@ export class SearchresultsComponent implements OnInit {
   
   constructor(@Inject(DOCUMENT) public document: Document,
                                 private searchService: SearchserviceService,
-                                private messageService: MessageService) { 
+                                private messageService: MessageService,
+                                private app: AppComponent) { 
                 
       this.desirabilityOptions = [
         {name: 'None', value: ''},
@@ -68,20 +69,22 @@ export class SearchresultsComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.searchService.getSampleData().subscribe(res => {
-      this.data = res;
-      this.loading = false;        
-      //console.log('data,' ,this.data);
-    });
-    //
-    // setTimeout(() =>{
-    //   this.searchService.getSampleData().subscribe(res => {
-    //     this.data = res.filter(item=>item.ENDDTE!=0)
-    //     this.loading = false;        
-    //     //console.log('data,' ,this.data);
-    //   });
-    // },2000);     
-    this.loading = true;  
+    // this.searchService.getSampleData().subscribe(res => {
+    //   this.data = res;
+    //   this.loading = false;
+    //   this.app.loading = false;       
+    //   //console.log('data,' ,this.data);
+    // });
+   
+    setTimeout(() =>{
+      this.searchService.getSampleData().subscribe(res => {
+        this.data = res//.filter(item=>item.ENDDTE!=0)
+        this.loading = false;
+        this.app.loading = false;        
+        //console.log('data,' ,this.data);
+      });
+    },3000);     
+    // this.loading = true;
   }
 
   selectClass(data: IBusinessClassData) {
@@ -112,15 +115,19 @@ export class SearchresultsComponent implements OnInit {
     this.UmbrellaClassGuidelines = data.CUPCMT;
     this.CTRColor = data.CTRDSR.trim();
     this.CTRClassGuidelines = data.CTRCMT;
+    
     //this.toastKey = data.CLASX.toString() + data.PRMSTE;
-    //this.messageService.add({key: 'key1', severity:'info', summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
+    // this.messageService.add({key: 'key1', severity:'info', sticky:true, summary:'Class Selected', detail: data.CLASX.toString() + ' - ' + data.DESC});
+    // this.messageService.add({key: 'key2', severity:'info', sticky:true, summary:'app.component', detail: 'app.component'});
    
   }
   AZclicked(letter: string){
     this.loading = true;
+    this.app.loading = true;
     this.searchService.getSampleData().subscribe(res => {
       this.data = res.filter(item=>item.DESC.charAt(0) == letter)
-      this.loading = false; 
+      this.loading = false;
+      this.app.loading = false;
     });
     //this.data = this.data.filter(x=>x.DESC.charAt(0) === letter);
   }
@@ -130,6 +137,7 @@ export class SearchresultsComponent implements OnInit {
     //var tb = this.document.getElementById('tbsearch');   
     //this.tbsearch.nativeElement.value = '';
     if(this.tb1Value === ''){
+     this.app.loading = true;
      this.ngOnInit();   
     }
     this.tb1Value = '';

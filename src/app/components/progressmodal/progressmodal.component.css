@@ -1,0 +1,262 @@
+.ui-growl {
+	left: 35%;
+	width: 30%;
+}
+
+.errorPanel { 
+	display: none;
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	border: 1px solid #a94442;
+	/* background-color: #f2dede; */
+	background-color: whitesmoke;
+	z-index: 9999;
+}
+
+.errorPanel .container {
+	display: block;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.errorPanel .container .header {
+	position: absolute;
+	top: 0px;
+	height: auto;
+	width: 100%;
+	color: #a94442;
+	/* background-color: #f2dede; */
+	background-color: whitesmoke;
+	border-bottom: 1px solid #a94442;
+	padding: 5px;
+	font-size: 13px;
+	user-select: text;
+	z-index: 11111;
+}
+
+.header h3 {
+	margin: 0px;
+	text-align: center;
+}
+
+.ui-toast {
+	position: fixed;
+	height: 95%;
+	width:292px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-top: 15px;
+	-ms-overflow-style: none;
+}
+
+/* .ui-toast .ui-shadow {
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+} */
+
+/* .ui-toast::-webkit-scrollbar { for an invisible scrollbar
+	width: 0px;  
+	background: transparent;
+} */
+
+.ui-toast .ui-toast-message {
+	position: relative;
+	display: block;
+	/* margin-bottom: 6px; */
+	overflow-y: hidden;
+	box-sizing: content-box;
+}
+
+.ui-toast .ui-toast-message .subheader{
+	font-size: 18px;
+	text-align: center;
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+	margin-bottom:0px;
+	background-color: #f2dede;
+}
+.ui-toast .ui-toast-message-content {
+	padding: .5em 1em;
+	padding-bottom:10px;
+}
+/* 
+.ui-toast .subheader{
+	font-size: 16px;
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+} */
+.ui-toast .ui-toast-close-icon {
+	position: absolute;
+	top: .25em;
+	right: .25em;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.ui-toast .ui-toast-summary {
+	font-weight: bold;
+	padding: 0 0 .5em 0;
+	display: block;
+}
+
+.ui-toast .ui-toast-icon {
+	position: absolute;
+	display: inline-block;
+	left: 40%;
+	padding: 0;
+	margin: 0 auto;
+	font-size: 50px;
+}
+
+.ui-toast .ui-toast-message-text-content {
+	padding: 0 0 .25em 0;
+	margin: 0;
+	font-size: 18px;
+	padding-top: 20px;
+	top: 40px;
+	position: absolute;
+	display: block;
+	clear: both;
+}
+
+/* Positions */
+.ui-toast-top-right {
+	top:36px;
+	right:4px;
+}
+
+.ui-toast-top-left {
+	top: 20px;
+	left: 20px;
+}
+
+.ui-toast-bottom-right {
+	bottom: 20px;
+	right: 20px;
+}
+
+.ui-toast-bottom-left {
+	bottom: 20px;
+	right: 20px;
+}
+
+.ui-toast-top-center {
+	top: 20px;
+	left: 50%;
+	margin-left: -10em;
+}
+
+.ui-toast-bottom-center {
+	bottom: 20px;
+	left: 50%;
+	margin-left: -10em;
+}
+
+.ui-toast-center {
+	left: 50%;
+	top: 65%;
+	min-width: 20vw;
+	transform: translate(-50%, -50%);
+}
+
+.ui-messages.ui-messages-success {
+	background-color: #dff0d8;
+	border-color: #d0e9c6;
+	color: #3c763d;
+}
+
+.ui-messages.ui-messages-success .ui-messages-close {
+	color: #3c763d;
+}
+
+.ui-messages.ui-messages-info {
+	background-color: #d9edf7;
+	border-color: #bcdff1;
+	color: #31708f;
+}
+
+.ui-messages.ui-messages-info .ui-messages-close {
+	color: #31708f;
+}
+
+.ui-messages.ui-messages-warn {
+	background-color: #fcf8e3;
+	border-color: #faf2cc;
+	color: #8a6d3b;
+	height: auto;
+	left:0px;
+}
+
+.ui-messages.ui-messages-warn .ui-messages-close {
+	color: #8a6d3b;
+}
+
+.ui-messages.ui-messages-error {
+	background-color: #f2dede;
+	border-color: #ebcccc;
+	color: #a94442;
+}
+
+.ui-messages.ui-messages-error .ui-messages-close {
+	color: #a94442;
+	font-size: 20px;
+}
+
+/* Growl */
+
+.ui-toast .ui-toast-message-success {
+	background-color: #dff0d8;
+	color: #3c763d;
+	height:25%;
+}
+
+.ui-toast .ui-toast-message-info {
+	background-color: #d9edf7;
+	color: #31708f;
+	height:25%;
+}
+
+.ui-toast .ui-toast-message-warn {
+	/* background-color: #fcf8e3;
+	color: #8a6d3b; */
+	background-color: rgb(255,227,153);
+	color: black;
+
+	height: 25%;
+	padding-bottom: 3px;
+	margin-bottom: 0px;
+	margin-top:18px;
+	left:0px;
+	box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.ui-toast .ui-toast-message-error {
+	background-color: #f2dede;
+	color: #a94442;
+	height: auto;
+	width: 100%;
+	left:0px;
+	margin-bottom: 6px;
+}
+
+/* .ui-toast .ui-toast-message-error {
+	background-color: #f2dede;
+	color: #a94442;
+	height: 25%;
+	width: 100%;
+	left:0px;
+	margin-bottom: 6px;
+} */
+
+:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
+    animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
+}
+
+@keyframes custom-progress-spinner-color {
+    100%{
+        stroke:#8C2633
+    }
+   
+}

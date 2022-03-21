@@ -17,6 +17,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {FieldsetModule} from 'primeng/fieldset';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 //components
 import {AppComponent} from './app.component';
@@ -25,12 +26,14 @@ import {SearchresultsComponent} from './search/searchresults.component';
 import {MessageService} from 'primeng/api';
 import {SearchserviceService} from './services/searchservice.service';
 import {TestingComponent} from './components/testing/testing.component';
+import {ProgressmodalComponent} from './components/progressmodal/progressmodal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchresultsComponent,
-    TestingComponent
+    TestingComponent,
+    ProgressmodalComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {TestingComponent} from './components/testing/testing.component';
     OverlayPanelModule,
     BrowserAnimationsModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ProgressSpinnerModule
   ],
   providers: [SearchserviceService,MessageService],
   bootstrap: [AppComponent]

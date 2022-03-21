@@ -1,0 +1,16 @@
+<div *ngIf="loading" style='z-index: 999; display: block; width: 100%; height: 100%; background-color: rgba(255, 255, 255, .80); position: fixed;'>
+	<div class='ui-toast ui-toast-center'>
+		<!-- <div #container class="ui-toast-message ui-shadow" *ngIf="msg" [ngClass]="{'ui-toast-message-info': msg.severity=='info' ,'ui-toast-message-warn': msg.severity=='warn' , 'ui-toast-message-error' : msg.severity=='error' ,'ui-toast-message-success': msg.severity=='success' }">
+			<div class="ui-toast-message-content">
+				<span class="ui-toast-icon pi" [ngClass]="{'pi-save': msg.severity=='info' , 'pi-exclamation-triangle' : msg.severity=='warn' , 'pi-times' : msg.severity=='error' , 'pi-check' :msg.severity=='success' }"></span>
+				<div class="ui-toast-message-text-content">
+					<div class="ui-toast-summary">{{msg.summary}}</div>
+					<div class="ui-toast-detail">{{msg.detail}}</div>
+				</div>
+
+			</div>
+		</div> -->
+		<!-- <p-progressSpinner></p-progressSpinner> -->
+		<p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="3" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+	</div>
+</div>
