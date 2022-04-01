@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
 import { SearchserviceService } from '../services/searchservice.service'
 import { DOCUMENT } from "@angular/common";
 import { AppComponent } from 'src/app/app.component'
+import { PrimeNGConfig,FilterMatchMode,LazyLoadEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-searchresults',
@@ -49,6 +50,7 @@ export class SearchresultsComponent implements OnInit {
   CTRColor = '';
   CTRClassGuidelines = '';
   //dropdown options 
+  stateslist: any[];
   desirabilityOptions: DesirabilityOptions[] =[];   
   
 
@@ -57,7 +59,9 @@ export class SearchresultsComponent implements OnInit {
   constructor(@Inject(DOCUMENT) public document: Document,
                                 private searchService: SearchserviceService,
                                 private messageService: MessageService,
-                                private app: AppComponent) { 
+                                private app: AppComponent,
+                                private cd: ChangeDetectorRef, 
+  private config: PrimeNGConfig) { 
                 
       this.desirabilityOptions = [
         {name: 'None', value: ''},
@@ -65,6 +69,16 @@ export class SearchresultsComponent implements OnInit {
         {name: 'Yellow', value: 'Y'},
         {name: 'Red', value: 'R'}
       ];     
+      this.stateslist = [
+        {label: 'MA', value: 'MA'},
+        {label: 'MI', value: 'MI'},
+        {label: 'NH', value: 'NH'},
+        {label: 'NJ', value: 'NJ'},
+        {label: 'NY', value: 'NY'},
+        {label: 'OH', value: 'OH'},
+        {label: 'PA', value: 'PA'},
+        {label: 'VT', value: 'VT'}
+    ]
   }
 
   ngOnInit(): void {
@@ -85,6 +99,49 @@ export class SearchresultsComponent implements OnInit {
       });
     },3000);     
     // this.loading = true;
+
+    this.config.filterMatchModeOptions = {
+      text: [
+          FilterMatchMode.STARTS_WITH,
+          FilterMatchMode.CONTAINS,
+          FilterMatchMode.NOT_CONTAINS,
+          FilterMatchMode.ENDS_WITH,
+          FilterMatchMode.EQUALS,
+          FilterMatchMode.NOT_EQUALS
+      ],
+      numeric: [
+          // FilterMatchMode.EQUALS,
+          // FilterMatchMode.NOT_EQUALS,
+          // FilterMatchMode.LESS_THAN,
+          // FilterMatchMode.LESS_THAN_OR_EQUAL_TO,
+          // FilterMatchMode.GREATER_THAN,
+          // FilterMatchMode.GREATER_THAN_OR_EQUAL_TO
+      ],
+      date: [
+          // FilterMatchMode.DATE_IS,
+          // FilterMatchMode.DATE_IS_NOT,
+          // FilterMatchMode.DATE_BEFORE,
+          // FilterMatchMode.DATE_AFTER
+      ]
+    }
+  }
+
+  lazyLoadClasses(event: LazyLoadEvent) {
+    this.loading = true;    
+    //  if (this.data) {
+    //   this.data = this.data.slice(event.first, (event.first + event.rows));
+    //   this.loading = false;
+    //   this.cd.detectChanges();
+    // }  
+    // else{
+    //   this.searchService.getData().subscribe(res => {
+    //     this.data = res;
+    //     this.loading = false;
+    //     this.cd.detectChanges(); 
+    //     //this.app.loading = false;       
+    //     //console.log('data,' ,this.data);
+    //   });
+    // }     
   }
 
   selectClass(data: IBusinessClassData) {
@@ -121,25 +178,30 @@ export class SearchresultsComponent implements OnInit {
     // this.messageService.add({key: 'key2', severity:'info', sticky:true, summary:'app.component', detail: 'app.component'});
    
   }
-  AZclicked(letter: string){
+  AZclicked(letter: string, table:Table){
     this.loading = true;
-    this.app.loading = true;
-    this.searchService.getSampleData().subscribe(res => {
-      this.data = res.filter(item=>item.DESC.charAt(0) == letter)
-      this.loading = false;
-      this.app.loading = false;
-    });
     //this.data = this.data.filter(x=>x.DESC.charAt(0) === letter);
+    table.filterGlobal(letter, FilterMatchMode.STARTS_WITH);
+
+    //* this was the old way before the code above */
+    // this.loading = true;
+    // //this.app.loading = true;
+    // this.searchService.getData().subscribe(res => {
+    //   this.data = res.filter(item=>item.DESC.charAt(0) == letter)
+    //   this.loading = false;
+    //   this.cd.detectChanges(); 
+    //   //this.app.loading = false;
+    // });
   }
   clear(table: Table) {
     table.clear();
     this.messageService.clear();
     //var tb = this.document.getElementById('tbsearch');   
     //this.tbsearch.nativeElement.value = '';
-    if(this.tb1Value === ''){
-     this.app.loading = true;
-     this.ngOnInit();   
-    }
+    // if(this.tb1Value === ''){
+    //  this.app.loading = true;
+    //  this.ngOnInit();   
+    // }
     this.tb1Value = '';
   }
   next() {
@@ -171,6 +233,59 @@ export class SearchresultsComponent implements OnInit {
         letters.push(String.fromCharCode(i));
     }
     return letters;
+  }
+  AddMenuItems():void{
+    
+    //General Rules
+    // this.menuClass.addMenuItem({
+    //   name: 'GeneralRules',
+    //   label: 'General Rules',
+    //   color: "ui-steps-number-default",
+    //   navSkip: false,
+    //   active: false,
+    //   hasError: false,
+    //   errors: [],
+    //   buttons: [],
+    //   form: '',
+    //   icon: 'fa fa-clipboard-list',
+    //   block: [],
+    //   visible: true,
+    //   quote: ""
+    // });
+
+    // //Agent Authority Document
+    // this.menuClass.addMenuItem({
+    //   name: 'AgentAuthorityDocument',
+    //   label: 'Agent Authority Document',
+    //   color: "ui-steps-number-default",
+    //   navSkip: false,
+    //   active: false,
+    //   hasError: false,
+    //   errors: [],
+    //   buttons: [],
+    //   form: '',
+    //   icon: 'fa fa-file',
+    //   block: [],
+    //   visible: true,
+    //   quote: ""
+    // });
+
+    // //Agent Binding Authority link
+    // this.menuClass.addMenuItem({
+    //   name: 'AgentBindingAuthoritylink',
+    //   label: 'Agent Binding Authority link',
+    //   color: "ui-steps-number-default",
+    //   navSkip: false,
+    //   active: false,
+    //   hasError: false,
+    //   errors: [],
+    //   buttons: [],
+    //   form: '',
+    //   icon: 'fa fa-object-group',
+    //   block: [],
+    //   visible: true,
+    //   quote: ""
+    // });
   }
 }
 interface DesirabilityOptions {
