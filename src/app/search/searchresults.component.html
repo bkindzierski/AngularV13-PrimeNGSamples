@@ -2,31 +2,32 @@
     <h2>Search Results</h2>
 </div> 
 <div style="align-items: center;">
-   
-    <!-- <p-table #dt1 [value]="data" 
-            dataKey="id"
-            [rows]="rows"
-            [paginator]="true"
-            [paginatorPosition]="pagingPosition"
-            [showCurrentPageReport]="true"
-            [loading]="loading"
-            [showLoader] ="true"
-            styleClass="p-datatable-sm"                   
-            selectionMode="single" 
-            responsiveLayout="scroll"
-            [globalFilterFields]="['CLASX','DESC','PRMSTEDESC','MAPMS']"
-            [(first)]="first"> -->
-        <p-table #dt1 [value]="data" 
-            dataKey="id"
-            [rows]="rows"
-            [paginator]="true"
-            [paginatorPosition]="pagingPosition"
-            [showCurrentPageReport]="true"           
-            styleClass="p-datatable-sm"                   
-            selectionMode="single" 
-            responsiveLayout="scroll"
-            [globalFilterFields]="['CLASX','DESC','PRMSTEDESC','MAPMS']"
-            [(first)]="first">
+   <!-- <p-table #dt1 [value]="data" 
+					[lazy]="true"
+					(onLazyLoad)="lazyLoadClasses($event)"	
+					dataKey="id"
+					[rows]="rows"
+					[paginator]="true"
+					[paginatorPosition]="pagingPosition"
+					[showCurrentPageReport]="true"
+					[loading]="loading"
+					[showLoader] ="true"
+					styleClass="p-datatable-sm"                   
+					selectionMode="single" 
+					responsiveLayout="scroll"
+					[globalFilterFields]="['CLASX','DESC','PRMSTEDESC','MAPMS']"
+					[(first)]="first"> -->
+                    <p-table #dt1 [value]="data"
+					dataKey="id"
+					[rows]="rows"
+					[paginator]="true"
+					[paginatorPosition]="pagingPosition"
+					[showCurrentPageReport]="true"           
+					styleClass="p-datatable-sm"                   
+					selectionMode="single" 
+					responsiveLayout="scroll"
+					[globalFilterFields]="['CLASX','DESC']"
+					[(first)]="first">
         <ng-template pTemplate="caption">
             <div class="flex">                
                 <span class="p-input-icon-left ml-auto"  style="display:inline;">
@@ -74,9 +75,19 @@
                         
                         <div class="flex">                
                             <span style="display:inline-flex; align-items: center; width: 68%;">
-                                <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment"></p-columnFilter>
-                                <p-columnFilter type="text" field="PRMSTEDESC" placeholder="State"></p-columnFilter>
-                                <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>                                
+                                <p-columnFilter field="PRMSTEDESC" matchMode="equals" [showMenu]="false">
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback"> 
+                                        <p-dropdown [ngModel]="value" [options]="stateslist" (onChange)="filter($event.value)" placeholder="State" [showClear]="true">
+                                            <ng-template let-option pTemplate="item">
+                                                <!-- <span [class]="'customer-badge status-' + option.value">{{option.label}}</span> -->
+                                                <span>{{option.label}}</span>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </ng-template>
+                                </p-columnFilter>
+                                <!-- <p-columnFilter type="text" field="PRMSTEDESC" placeholder="State"></p-columnFilter> -->
+                                <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment" style="margin-left:1em;"></p-columnFilter>
+                                <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>                                  
                             </span>
                             <div class="mb-3" style="float:right;">
                                 <!-- -->
@@ -92,7 +103,7 @@
                         <p style="margin-bottom:0em;">Search by Letter:</p>
                         <div class="AZbtn" style="display:inline-flex;width:50em;margin-left: -1em;text-align: left">                           
                            
-                            <button *ngFor="let item of createAZlinks()" (click)="AZclicked(item)" pButton type="button" class="p-button-link">{{ item }}</button>
+                            <button *ngFor="let item of createAZlinks()" (click)="AZclicked(item,dt1)" pButton type="button" class="p-button-link">{{ item }}</button>
                         </div> 
                         <!-- <div class="card">
                             <div class="flex flex-column md:flex-row card-container indigo-container">
