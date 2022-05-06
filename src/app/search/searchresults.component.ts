@@ -51,7 +51,7 @@ export class SearchresultsComponent implements OnInit {
   CTRClassGuidelines = '';
   //dropdown options 
   stateslist: any[];
-  mktseg: any [];
+  mktsegs: any [];
   desirabilityOptions: DesirabilityOptions[] =[];   
   
 
@@ -80,13 +80,13 @@ export class SearchresultsComponent implements OnInit {
         {label: 'PA', value: 'PA'},
         {label: 'VT', value: 'VT'}
     ]
-    this.mktseg = [
-      {label: 'Unqualified', value: 'unqualified'},
-      {label: 'Qualified', value: 'qualified'},
-      {label: 'New', value: 'new'},
-      {label: 'Negotiation', value: 'negotiation'},
-      {label: 'Renewal', value: 'renewal'},
-      {label: 'Proposal', value: 'proposal'}
+    this.mktsegs = [
+      // {label: 'INPR', value: 'INPR'},
+      // {label: 'INST', value: 'INST'},
+      // {label: 'MERC', value: 'MERC'}
+      // {label: 'Negotiation', value: 'negotiation'},
+      // {label: 'Renewal', value: 'renewal'},
+      // {label: 'Proposal', value: 'proposal'}
   ]
   }
 
@@ -102,6 +102,7 @@ export class SearchresultsComponent implements OnInit {
     setTimeout(() =>{
       this.searchService.getSampleData().subscribe(res => {
         this.data = res//.filter(item=>item.ENDDTE!=0)
+        //this.mktsegs = this.data(item=>item.MAPMS);
         this.loading = false;
         this.app.loading = false;        
         //console.log('data,' ,this.data);
