@@ -51,6 +51,7 @@ export class SearchresultsComponent implements OnInit {
   CTRClassGuidelines = '';
   //dropdown options 
   stateslist: any[];
+  mktseg: any [];
   desirabilityOptions: DesirabilityOptions[] =[];   
   
 
@@ -79,6 +80,14 @@ export class SearchresultsComponent implements OnInit {
         {label: 'PA', value: 'PA'},
         {label: 'VT', value: 'VT'}
     ]
+    this.mktseg = [
+      {label: 'Unqualified', value: 'unqualified'},
+      {label: 'Qualified', value: 'qualified'},
+      {label: 'New', value: 'new'},
+      {label: 'Negotiation', value: 'negotiation'},
+      {label: 'Renewal', value: 'renewal'},
+      {label: 'Proposal', value: 'proposal'}
+  ]
   }
 
   ngOnInit(): void {
