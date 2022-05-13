@@ -86,7 +86,17 @@
                                     </ng-template>
                                 </p-columnFilter>
                                 <!-- <p-columnFilter type="text" field="PRMSTEDESC" placeholder="State"></p-columnFilter> -->
-                                <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment" style="margin-left:1em;"></p-columnFilter>
+                                <p-columnFilter field="MAPMS" matchMode="equals" [showMenu]="false">
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-dropdown [ngModel]="value" [options]="mktsegs" (onChange)="filter($event.value)" placeholder="Market Segment" [showClear]="true">
+                                            <ng-template let-option pTemplate="item">
+                                                <!-- <span [class]="'customer-badge status-' + option.value">{{option.label}}</span> -->
+                                                <span>{{option.label}}</span>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </ng-template>
+                                </p-columnFilter>
+                                <!-- <p-columnFilter type="text" field="MAPMS" placeholder="Market Segment" style="margin-left:1em;"></p-columnFilter> -->
                                 <p-columnFilter type="text" field="EFFDTE" placeholder="Effective Date"></p-columnFilter>                                  
                             </span>
                             <div class="mb-3" style="float:right;">
