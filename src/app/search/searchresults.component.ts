@@ -6,6 +6,7 @@ import { SearchserviceService } from '../services/searchservice.service'
 import { DOCUMENT } from "@angular/common";
 import { AppComponent } from 'src/app/app.component'
 import { PrimeNGConfig,FilterMatchMode,LazyLoadEvent } from 'primeng/api';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-searchresults',
@@ -50,8 +51,8 @@ export class SearchresultsComponent implements OnInit {
   CTRColor = '';
   CTRClassGuidelines = '';
   //dropdown options 
-  stateslist: any[];
-  mktsegs: any [];
+  stateslist: any[] = [];
+  mktsegs: MarketSegmentDropDown[] = [];
   desirabilityOptions: DesirabilityOptions[] =[];   
   
 
@@ -102,9 +103,27 @@ export class SearchresultsComponent implements OnInit {
     setTimeout(() =>{
       this.searchService.getSampleData().subscribe(res => {
         this.data = res//.filter(item=>item.ENDDTE!=0)
-        //this.mktsegs = this.data(item=>item.MAPMS);
+        let uniqueMktSegments: any [] = _.uniqBy(this.data, "MAPMS");       
+
         this.loading = false;
         this.app.loading = false;        
+
+        uniqueMktSegments.forEach(seg=>{
+          if(seg != '' && seg != ' ' && seg != null && seg != undefined){
+            this.mktsegs.push({
+              label: seg.MAPMS,
+              value: seg.MAPMS
+            });
+          }
+        });
+
+        this.mktsegs.sort(function(a, b){
+          if(a.label < b.label)
+            return -1
+          if(a.label > b.label)
+            return 1;
+          return 0;
+        });
         //console.log('data,' ,this.data);
       });
     },3000);     
@@ -300,5 +319,9 @@ export class SearchresultsComponent implements OnInit {
 }
 interface DesirabilityOptions {
   name: string,
+  value: string
+}
+interface MarketSegmentDropDown{
+  label: string,
   value: string
 }
