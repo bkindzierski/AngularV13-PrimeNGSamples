@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit,ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit,ViewChild, ElementRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { IBusinessClassData } from '../model/IBusinessClass';
@@ -88,7 +88,7 @@ export class SearchresultsComponent implements OnInit {
       // {label: 'Negotiation', value: 'negotiation'},
       // {label: 'Renewal', value: 'renewal'},
       // {label: 'Proposal', value: 'proposal'}
-  ]
+    ]
   }
 
   ngOnInit(): void {
@@ -153,6 +153,10 @@ export class SearchresultsComponent implements OnInit {
           // FilterMatchMode.DATE_AFTER
       ]
     }
+  }
+
+  @HostListener('window:scroll', ['$event']) onWindowScroll ($event){
+    console.log('scrolling....');
   }
 
   lazyLoadClasses(event: LazyLoadEvent) {
