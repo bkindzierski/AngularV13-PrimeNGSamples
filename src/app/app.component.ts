@@ -16,9 +16,9 @@ export class AppComponent {
 
   constructor(public changeDetectionRef: ChangeDetectorRef,
     private messageService: MessageService)  { 
-      sampletest.forEach(x=>{
-        console.log('test sample RCDID: ', x.RCDID);
-      });    
+      // sampletest.forEach(x=>{
+      //   console.log('test sample RCDID: ', x.RCDID);
+      // });    
     }
 
   ngOninit() {
