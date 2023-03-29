@@ -22,7 +22,7 @@ export class AppComponent {
     }
 
   ngOninit() {
-    //console.log('test sample RCDID: ', sampletest[0].RCDID);
+    console.log('test sample RCDID: ', sampletest[0].RCDID);
     console.log('NgOnInit??: ');
   }
   
