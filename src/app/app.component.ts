@@ -14,11 +14,13 @@ export class AppComponent {
   display;
   loading = true;
 
+  //git tester
   constructor(public changeDetectionRef: ChangeDetectorRef,
     private messageService: MessageService)  { 
       // sampletest.forEach(x=>{
       //   console.log('test sample RCDID: ', x.RCDID);
       // });    
+      
     }
 
   ngOninit() {
