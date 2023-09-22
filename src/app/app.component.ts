@@ -14,15 +14,17 @@ export class AppComponent {
   display;
   loading = true;
 
+  //git tester
   constructor(public changeDetectionRef: ChangeDetectorRef,
     private messageService: MessageService)  { 
       // sampletest.forEach(x=>{
       //   console.log('test sample RCDID: ', x.RCDID);
       // });    
+      
     }
 
   ngOninit() {
-    //console.log('test sample RCDID: ', sampletest[0].RCDID);
+    console.log('test sample RCDID: ', sampletest[0].RCDID);
     console.log('NgOnInit??: ');
   }
   
